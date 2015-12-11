@@ -1,0 +1,154 @@
+package mcc.protobuf;
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "edu.phystech.acsl.geotarget.protobuf";
+option java_outer_classname = "IfDevProto";
+
+message NamespaceFull_Request
+{
+    required string fqn = 1;
+}
+
+message NamespaceFull_Response
+{
+    message Unit
+    {
+        required string name = 1;
+        optional string info = 2;
+        optional string display = 3;
+    }
+
+    message BaseType
+    {
+        required string name = 1;
+        optional string info = 2;
+        required string kind = 3;
+        required uint32 bitLength = 4;
+    }
+
+    message EnumTypeConstant
+    {
+        required string name = 1;
+        optional string info = 2;
+        required string value = 3;
+    }
+
+    message EnumType
+    {
+        required string name = 1;
+        optional string info = 2;
+        required string baseType = 3;
+        repeated EnumTypeConstant constants = 4;
+    }
+
+    message ArrayType
+    {
+        required string name = 1;
+        optional string info = 2;
+        required string baseType = 3;
+        repeated uint32 sizes = 4;
+    }
+
+    message DynamicArrayType
+    {
+        required string name = 1;
+        optional string info = 2;
+        required string baseType = 3;
+        required uint32 minLength = 4;
+        required uint32 maxLength = 5;
+    }
+
+    message StructTypeField
+    {
+        required string name = 1;
+        optional string info = 2;
+        required string type = 3;
+        optional string unit = 4;
+    }
+
+    message StructType
+    {
+        required string name = 1;
+        optional string info = 2;
+        repeated StructTypeField fields = 3;
+    }
+
+    message MessageParameter
+    {
+        required string name = 1;
+        optional string info = 2;
+    }
+
+    message StatusMessage
+    {
+        required string name = 1;
+        optional string info = 2;
+        repeated MessageParameter parameters = 3;
+    }
+
+    message EventMessage
+    {
+        required string name = 1;
+        optional string info = 2;
+        repeated MessageParameter parameters = 3;
+    }
+
+    message DynamicStatusMessage
+    {
+        required string name = 1;
+        optional string info = 2;
+        repeated MessageParameter parameters = 3;
+    }
+
+    message CommandArgument
+    {
+        required string name = 1;
+        optional string info = 2;
+        required string type = 3;
+        optional string unit = 4;
+    }
+
+    message Command
+    {
+        required string name = 1;
+        optional string info = 2;
+        repeated CommandArgument arguments = 3;
+    }
+
+    message Message
+    {
+        oneof body
+        {
+            StatusMessage statusMessage = 1;
+            EventMessage eventMessage = 2;
+            DynamicStatusMessage dynamicStatusMessage = 3;
+        }
+    }
+
+    message Type
+    {
+        oneof body
+        {
+            BaseType baseType = 1;
+            EnumType enumType = 2;
+            ArrayType arrayType = 3;
+            DynamicArrayType dynamicArrayType = 4;
+            StructType structType = 5;
+        }
+    }
+
+    message Component
+    {
+        required string name = 1;
+        optional string info = 2;
+        optional string baseType = 3;
+        repeated string subcomponents = 4;
+        repeated Command commands = 5;
+        repeated Message messages = 6;
+    }
+
+    repeated string subNamespaces = 1;
+    repeated Unit units = 2;
+    repeated Type types = 3;
+    repeated Component components = 4;
+}

@@ -1,0 +1,16 @@
+{
+  "device_kinds": [
+    {
+      "info": "неизвестный",
+      "name": "unknown"
+    },
+    {
+      "info": "самолёт",
+      "name": "plane"
+    },
+    {
+      "info": "коптер",
+      "name": "copter"
+    }
+  ]
+}

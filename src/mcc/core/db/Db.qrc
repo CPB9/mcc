@@ -1,0 +1,20 @@
+<RCC>
+    <qresource>
+        <file>db/SchemaRsceStyle.sql</file>
+        <file>db/Schema.sql</file>
+        <file>db/traits/CoreBase.yaml</file>
+        <file>db/traits/CoreBase.json</file>
+        <file>db/traits/Devices.yaml</file>
+        <file>db/traits/Devices.json</file>
+        <file>db/traits/DeviceKinds.yaml</file>
+        <file>db/traits/DeviceKinds.json</file>
+        <file>db/traits/MavlinkCommon.yaml</file>
+        <file>db/traits/MavlinkCommon.json</file>
+        <file>db/traits/Model.yaml</file>
+        <file>db/traits/Model.json</file>
+        <file>db/traits/Protocols.yaml</file>
+        <file>db/traits/Protocols.json</file>
+        <file>db/traits/Services.yaml</file>
+        <file>db/traits/Services.json</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,31 @@
+devices:
+  - name: 'mcc.model1'
+    info: 'mcc.model1'
+    kind: 'plane'
+    firmware: 'model'
+    protocols:
+        Internal: 1
+  - name: 'mcc.model2'
+    info: 'mcc.model2'
+    kind: 'plane'
+    firmware: 'model'
+    protocols:
+        Internal: 2
+  - name: 'mcc.model3'
+    info: 'mcc.model3'
+    kind: 'plane'
+    firmware: 'model'
+    protocols:
+        Internal: 3
+  - name: 'mcc.model4'
+    info: 'mcc.model4'
+    kind: 'plane'
+    firmware: 'model'
+    protocols:
+        Internal: 4
+  - name: 'mcc.mavlink1'
+    info: 'mcc.mavlink1'
+    kind: 'copter'
+    firmware: 'model'
+    protocols:
+        Mavlink: 1

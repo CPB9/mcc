@@ -1,0 +1,54 @@
+set(KMLDOM_SRC
+    abstractlatlonbox.cc
+    abstractview.cc
+    atom.cc
+    balloonstyle.cc
+    colorstyle.cc
+    container.cc
+    document.cc
+    element.cc
+    extendeddata.cc
+    feature.cc
+    folder.cc
+    geometry.cc
+    hotspot.cc
+    iconstyle.cc
+    kml_cast.cc
+    kml_factory.cc
+    kml.cc
+    link.cc
+    labelstyle.cc
+    linestyle.cc
+    liststyle.cc
+    model.cc
+    networklink.cc
+    networklinkcontrol.cc
+    object.cc
+    overlay.cc
+    placemark.cc
+    polystyle.cc
+    region.cc
+    schema.cc
+    snippet.cc
+    style.cc
+    stylemap.cc
+    styleselector.cc
+    substyle.cc
+    timeprimitive.cc
+    gx_timeprimitive.cc
+    gx_tour.cc
+    vec2.cc
+    kml_handler.cc
+    kml_handler_ns.cc
+    parser.cc
+    serializer.cc
+    xal.cc
+    xml_serializer.cc
+    xsd.cc
+    visitor.cc
+    visitor_driver.cc
+)
+
+add_library(kmldom STATIC ${KMLDOM_SRC})
+
+target_link_libraries(kmldom kmlbase)

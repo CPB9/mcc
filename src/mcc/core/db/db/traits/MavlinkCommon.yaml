@@ -1,0 +1,701 @@
+firmwares:
+  - name: mavlink
+    info: mavlink
+    traits:
+      - name: Mavlink
+        info: "Commands to be executed by the MAV. They can be executed on user request, or as part of a mission script. If the action is used in a mission, the parameter mapping to the waypoint/mission message is as follows: Param 1, Param 2, Param 3, Param 4, X: Param 5, Y:Param 6, Z:Param 7. This command list is similar what ARINC 424 is for commercial aircraft: A data format how to interpret waypoint/mission data."
+        kind: interface
+        commands:
+          - info: "Navigate to MISSION."
+            name: MAV_CMD_NAV_WAYPOINT
+            name_id: 16
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Hold time in decimal seconds. (ignored by fixed wing, time to stay at MISSION for rotary wing)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Acceptance radius in meters (if the sphere with this radius is hit, the MISSION counts as reached)"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "0 to pass through the WP, if > 0 radius in meters to pass by WP. Positive value for clockwise orbit, negative value for counter-clockwise orbit. Allows trajectory control."}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Desired yaw angle at MISSION (rotary wing)"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Altitude"}
+          - info: "Loiter around this MISSION an unlimited amount of time"
+            name: MAV_CMD_NAV_LOITER_UNLIM
+            name_id: 17
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Radius around MISSION, in meters. If positive loiter clockwise, else counter-clockwise"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Desired yaw angle."}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Altitude"}
+          - info: "Loiter around this MISSION for X turns"
+            name: MAV_CMD_NAV_LOITER_TURNS
+            name_id: 18
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Turns"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Radius around MISSION, in meters. If positive loiter clockwise, else counter-clockwise"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Desired yaw angle."}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Altitude"}
+          - info: "Loiter around this MISSION for X seconds"
+            name: MAV_CMD_NAV_LOITER_TIME
+            name_id: 19
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Seconds (decimal)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Radius around MISSION, in meters. If positive loiter clockwise, else counter-clockwise"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Desired yaw angle."}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Altitude"}
+          - info: "Return to launch location"
+            name: MAV_CMD_NAV_RETURN_TO_LAUNCH
+            name_id: 20
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Land at location"
+            name: MAV_CMD_NAV_LAND
+            name_id: 21
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Desired yaw angle."}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Altitude"}
+          - info: "Takeoff from ground / hand"
+            name: MAV_CMD_NAV_TAKEOFF
+            name_id: 22
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Minimum pitch (if airspeed sensor present), desired pitch without sensor"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Yaw angle (if magnetometer present), ignored without magnetometer"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Altitude"}
+          - info: "'Continue on the current course and climb/descend to specified altitude.  When the altitude is reached continue to the next command (i.e., don''t proceed to the next command until the desired altitude is reached.'"
+            name: MAV_CMD_NAV_CONTINUE_AND_CHANGE_ALT
+            name_id: 30
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Desired altitude in meters"}
+          - info: "'Begin loiter at the specified Latitude and Longitude.  If Lat=Lon=0, then loiter at the current position.  Don''t consider the navigation command complete (don''t leave loiter) until the altitude has been reached.  Additionally, if the Heading Required parameter is non-zero the  aircraft will not leave the loiter until heading toward the next waypoint. '"
+            name: MAV_CMD_NAV_LOITER_TO_ALT
+            name_id: 31
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Heading Required (0 = False)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Radius in meters. If positive loiter clockwise, negative counter-clockwise, 0 means no change to standard loiter."}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Altitude"}
+          - info: "Sets the region of interest (ROI) for a sensor set or the vehicle itself. This can then be used by the vehicles control system to control the vehicle attitude and the attitude of various sensors such as cameras."
+            name: MAV_CMD_NAV_ROI
+            name_id: 80
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Region of intereset mode. (see MAV_ROI enum)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "MISSION index/ target ID. (see MAV_ROI enum)"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "ROI index (allows a vehicle to manage multiple ROI's)"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "x the location of the fixed ROI (see MAV_FRAME)"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "y"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "z"}
+          - info: "Control autonomous path planning on the MAV."
+            name: MAV_CMD_NAV_PATHPLANNING
+            name_id: 81
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'0: Disable local obstacle avoidance / local path planning (without resetting map), 1: Enable local path planning, 2: Enable and reset local path planning'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "'0: Disable full path planning (without resetting map), 1: Enable, 2: Enable and reset map/occupancy grid, 3: Enable and reset planned route, but not occupancy grid'"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Yaw angle at goal, in compass degrees, [0..360]"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude/X of goal"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude/Y of goal"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Altitude/Z of goal"}
+          - info: "Navigate to MISSION using a spline path."
+            name: MAV_CMD_NAV_SPLINE_WAYPOINT
+            name_id: 82
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Hold time in decimal seconds. (ignored by fixed wing, time to stay at MISSION for rotary wing)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude/X of goal"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude/Y of goal"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Altitude/Z of goal"}
+          - info: "hand control over to an external controller"
+            name: MAV_CMD_NAV_GUIDED_ENABLE
+            name_id: 92
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "On / Off (> 0.5f on)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "NOP - This command is only used to mark the upper limit of the NAV/ACTION commands in the enumeration"
+            name: MAV_CMD_NAV_LAST
+            name_id: 95
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Delay mission state machine."
+            name: MAV_CMD_CONDITION_DELAY
+            name_id: 112
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Delay in seconds (decimal)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Ascend/descend at rate.  Delay mission state machine until desired altitude reached."
+            name: MAV_CMD_CONDITION_CHANGE_ALT
+            name_id: 113
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Descent / Ascend rate (m/s)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Finish Altitude"}
+          - info: "Delay mission state machine until within desired distance of next NAV point."
+            name: MAV_CMD_CONDITION_DISTANCE
+            name_id: 114
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Distance (meters)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Reach a certain target angle."
+            name: MAV_CMD_CONDITION_YAW
+            name_id: 115
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'target angle: [0-360], 0 is north'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "speed during yaw change:[deg per second]"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "'direction: negative: counter clockwise, positive: clockwise [-1,1]'"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "'relative offset or absolute angle: [ 1,0]'"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "NOP - This command is only used to mark the upper limit of the CONDITION commands in the enumeration"
+            name: MAV_CMD_CONDITION_LAST
+            name_id: 159
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Set system mode."
+            name: MAV_CMD_DO_SET_MODE
+            name_id: 176
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Mode, as defined by ENUM MAV_MODE"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Custom mode - this is system specific, please refer to the individual autopilot specifications for details."}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Jump to the desired command in the mission list.  Repeat this action only the specified number of times"
+            name: MAV_CMD_DO_JUMP
+            name_id: 177
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Sequence number"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Repeat count"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Change speed and/or throttle set points."
+            name: MAV_CMD_DO_CHANGE_SPEED
+            name_id: 178
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Speed type (0=Airspeed, 1=Ground Speed)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Speed  (m/s, -1 indicates no change)"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Throttle  ( Percent, -1 indicates no change)"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Changes the home location either to the current location or a specified location."
+            name: MAV_CMD_DO_SET_HOME
+            name_id: 179
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Use current (1=use current location, 0=use specified location)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Altitude"}
+          - info: "Set a system parameter.  Caution!  Use of this command requires knowledge of the numeric enumeration value of the parameter."
+            name: MAV_CMD_DO_SET_PARAMETER
+            name_id: 180
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Parameter number"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Parameter value"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Set a relay to a condition."
+            name: MAV_CMD_DO_SET_RELAY
+            name_id: 181
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Relay number"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Setting (1=on, 0=off, others possible depending on system hardware)"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Cycle a relay on and off for a desired number of cyles with a desired period."
+            name: MAV_CMD_DO_REPEAT_RELAY
+            name_id: 182
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Relay number"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Cycle count"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Cycle time (seconds, decimal)"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Set a servo to a desired PWM value."
+            name: MAV_CMD_DO_SET_SERVO
+            name_id: 183
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Servo number"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "PWM (microseconds, 1000 to 2000 typical)"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Cycle a between its nominal setting and a desired PWM for a desired number of cycles with a desired period."
+            name: MAV_CMD_DO_REPEAT_SERVO
+            name_id: 184
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Servo number"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "PWM (microseconds, 1000 to 2000 typical)"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Cycle count"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Cycle time (seconds)"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Terminate flight immediately"
+            name: MAV_CMD_DO_FLIGHTTERMINATION
+            name_id: 185
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Flight termination activated if > 0.5"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "'Mission command to perform a landing. This is used as a marker in a mission to tell the autopilot where a sequence of mission items that represents a landing starts. It may also be sent via a COMMAND_LONG to trigger a landing, in which case the nearest (geographically) landing sequence in the mission will be used. The Latitude/Longitude is optional, and may be set to 0/0 if not needed. If specified then it will be used to help find the closest landing sequence.'"
+            name: MAV_CMD_DO_LAND_START
+            name_id: 189
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Mission command to perform a landing from a rally point."
+            name: MAV_CMD_DO_RALLY_LAND
+            name_id: 190
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Break altitude (meters)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Landing speed (m/s)"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Mission command to safely abort an autonmous landing."
+            name: MAV_CMD_DO_GO_AROUND
+            name_id: 191
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Altitude (meters)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Control onboard camera system."
+            name: MAV_CMD_DO_CONTROL_VIDEO
+            name_id: 200
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Camera ID (-1 for all)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "'Transmission: 0: disabled, 1: enabled compressed, 2: enabled raw'"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "'Transmission mode: 0: video stream, >0: single images every n seconds (decimal)'"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "'Recording: 0: disabled, 1: enabled compressed, 2: enabled raw'"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Sets the region of interest (ROI) for a sensor set or the vehicle itself. This can then be used by the vehicles control system to control the vehicle attitude and the attitude of various sensors such as cameras."
+            name: MAV_CMD_DO_SET_ROI
+            name_id: 201
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Region of intereset mode. (see MAV_ROI enum)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "MISSION index/ target ID. (see MAV_ROI enum)"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "ROI index (allows a vehicle to manage multiple ROI's)"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "x the location of the fixed ROI (see MAV_FRAME)"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "y"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "z"}
+          - info: "Mission command to configure an on-board camera controller system."
+            name: MAV_CMD_DO_DIGICAM_CONFIGURE
+            name_id: 202
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'Modes: P, TV, AV, M, Etc'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "'Shutter speed: Divisor number for one second'"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "'Aperture: F stop number'"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "ISO number e.g. 80, 100, 200, Etc"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Exposure type enumerator"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Command Identity"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Main engine cut-off time before camera trigger in seconds/10 (0 means no cut-off)"}
+          - info: "Mission command to control an on-board camera controller system."
+            name: MAV_CMD_DO_DIGICAM_CONTROL
+            name_id: 203
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Session control e.g. show/hide lens"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Zoom's absolute position"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Zooming step value to offset zoom from the current position"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Focus Locking, Unlocking or Re-locking"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Shooting Command"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Command Identity"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Mission command to configure a camera or antenna mount"
+            name: MAV_CMD_DO_MOUNT_CONFIGURE
+            name_id: 204
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Mount operation mode (see MAV_MOUNT_MODE enum)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "stabilize roll? (1 = yes, 0 = no)"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "stabilize pitch? (1 = yes, 0 = no)"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "stabilize yaw? (1 = yes, 0 = no)"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Mission command to control a camera or antenna mount"
+            name: MAV_CMD_DO_MOUNT_CONTROL
+            name_id: 205
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "pitch or lat in degrees, depending on mount mode."}
+              - {name:  param_2 ,type: f32, unit: ~, info: "roll or lon in degrees depending on mount mode"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "yaw or alt (in meters) depending on mount mode"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "reserved"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "reserved"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "reserved"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "MAV_MOUNT_MODE enum value"}
+          - info: "Mission command to set CAM_TRIGG_DIST for this flight"
+            name: MAV_CMD_DO_SET_CAM_TRIGG_DIST
+            name_id: 206
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Camera trigger distance (meters)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Mission command to enable the geofence"
+            name: MAV_CMD_DO_FENCE_ENABLE
+            name_id: 207
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "enable? (0=disable, 1=enable)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Mission command to trigger a parachute"
+            name: MAV_CMD_DO_PARACHUTE
+            name_id: 208
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "action (0=disable, 1=enable, 2=release, for some systems see PARACHUTE_ACTION enum, not in general message set.)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Change to/from inverted flight"
+            name: MAV_CMD_DO_INVERTED_FLIGHT
+            name_id: 210
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "inverted (0=normal, 1=inverted)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "'Mission command to control a camera or antenna mount, using a quaternion as reference.'"
+            name: MAV_CMD_DO_MOUNT_CONTROL_QUAT
+            name_id: 220
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'q1 - quaternion param #1, w (1 in null-rotation)'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "'q2 - quaternion param #2, x (0 in null-rotation)'"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "'q3 - quaternion param #3, y (0 in null-rotation)'"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "'q4 - quaternion param #4, z (0 in null-rotation)'"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "set id of master controller"
+            name: MAV_CMD_DO_GUIDED_MASTER
+            name_id: 221
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "System ID"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Component ID"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "set limits for external control"
+            name: MAV_CMD_DO_GUIDED_LIMITS
+            name_id: 222
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "timeout - maximum time (in seconds) that external controller will be allowed to control vehicle. 0 means no timeout"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "absolute altitude min (in meters, AMSL) - if vehicle moves below this alt, the command will be aborted and the mission will continue.  0 means no lower altitude limit"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "absolute altitude max (in meters)- if vehicle moves above this alt, the command will be aborted and the mission will continue.  0 means no upper altitude limit"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "horizontal move limit (in meters, AMSL) - if vehicle moves more than this distance from it's location at the moment the command was executed, the command will be aborted and the mission will continue. 0 means no horizontal altitude limit"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "NOP - This command is only used to mark the upper limit of the DO commands in the enumeration"
+            name: MAV_CMD_DO_LAST
+            name_id: 240
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Trigger calibration. This command will be only accepted if in pre-flight mode."
+            name: MAV_CMD_PREFLIGHT_CALIBRATION
+            name_id: 241
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'Gyro calibration: 0: no, 1: yes'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "'Magnetometer calibration: 0: no, 1: yes'"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "'Ground pressure: 0: no, 1: yes'"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "'Radio calibration: 0: no, 1: yes'"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "'Accelerometer calibration: 0: no, 1: yes'"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "'Compass/Motor interference calibration: 0: no, 1: yes'"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Set sensor offsets. This command will be only accepted if in pre-flight mode."
+            name: MAV_CMD_PREFLIGHT_SET_SENSOR_OFFSETS
+            name_id: 242
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'Sensor to adjust the offsets for: 0: gyros, 1: accelerometer, 2: magnetometer, 3: barometer, 4: optical flow, 5: second magnetometer'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "X axis offset (or generic dimension 1), in the sensor's raw units"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Y axis offset (or generic dimension 2), in the sensor's raw units"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Z axis offset (or generic dimension 3), in the sensor's raw units"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Generic dimension 4, in the sensor's raw units"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Generic dimension 5, in the sensor's raw units"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Generic dimension 6, in the sensor's raw units"}
+          - info: "Request storage of different parameter values and logs. This command will be only accepted if in pre-flight mode."
+            name: MAV_CMD_PREFLIGHT_STORAGE
+            name_id: 245
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'Parameter storage: 0: READ FROM FLASH/EEPROM, 1: WRITE CURRENT TO FLASH/EEPROM'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "'Mission storage: 0: READ FROM FLASH/EEPROM, 1: WRITE CURRENT TO FLASH/EEPROM'"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Request the reboot or shutdown of system components."
+            name: MAV_CMD_PREFLIGHT_REBOOT_SHUTDOWN
+            name_id: 246
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'0: Do nothing for autopilot, 1: Reboot autopilot, 2: Shutdown autopilot.'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "'0: Do nothing for onboard computer, 1: Reboot onboard computer, 2: Shutdown onboard computer.'"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Hold / continue the current action"
+            name: MAV_CMD_OVERRIDE_GOTO
+            name_id: 252
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'MAV_GOTO_DO_HOLD: hold MAV_GOTO_DO_CONTINUE: continue with next item in mission plan'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "'MAV_GOTO_HOLD_AT_CURRENT_POSITION: Hold at current position MAV_GOTO_HOLD_AT_SPECIFIED_POSITION: hold at specified position'"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "MAV_FRAME coordinate frame of hold point"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Desired yaw angle in degrees"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude / X position"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude / Y position"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Altitude / Z position"}
+          - info: "start running a mission"
+            name: MAV_CMD_MISSION_START
+            name_id: 300
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'first_item: the first mission item to run'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "'last_item:  the last mission item to run (after this item is run, the mission ends)'"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Arms / Disarms a component"
+            name: MAV_CMD_COMPONENT_ARM_DISARM
+            name_id: 400
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "1 to arm, 0 to disarm"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Starts receiver pairing"
+            name: MAV_CMD_START_RX_PAIR
+            name_id: 500
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "0:Spektrum"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "0:Spektrum DSM2, 1:Spektrum DSMX"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Request autopilot capabilities"
+            name: MAV_CMD_REQUEST_AUTOPILOT_CAPABILITIES
+            name_id: 520
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'1: Request autopilot version'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Reserved (all remaining params)"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Start image capture sequence"
+            name: MAV_CMD_IMAGE_START_CAPTURE
+            name_id: 2000
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Duration between two consecutive pictures (in seconds)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Number of images to capture total - 0 for unlimited capture"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Resolution in megapixels (0.3 for 640x480, 1.3 for 1280x720, etc)"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Stop image capture sequence"
+            name: MAV_CMD_IMAGE_STOP_CAPTURE
+            name_id: 2001
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Enable or disable on-board camera triggering system."
+            name: MAV_CMD_DO_TRIGGER_CONTROL
+            name_id: 2003
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Trigger enable/disable (0 for disable, 1 for start)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Shutter integration time (in ms)"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Starts video capture"
+            name: MAV_CMD_VIDEO_START_CAPTURE
+            name_id: 2500
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Camera ID (0 for all cameras), 1 for first, 2 for second, etc."}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Frames per second"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Resolution in megapixels (0.3 for 640x480, 1.3 for 1280x720, etc)"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Stop the current video capture"
+            name: MAV_CMD_VIDEO_STOP_CAPTURE
+            name_id: 2501
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Create a panorama at the current position"
+            name: MAV_CMD_PANORAMA_CREATE
+            name_id: 2800
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "Viewing angle horizontal of the panorama (in degrees, +- 0.5 the total angle)"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Viewing angle vertical of panorama (in degrees)"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Speed of the horizontal rotation (in degrees per second)"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Speed of the vertical rotation (in degrees per second)"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Empty"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Empty"}
+          - info: "Deploy payload on a Lat / Lon / Alt position. This includes the navigation to reach the required release position and velocity."
+            name: MAV_CMD_PAYLOAD_PREPARE_DEPLOY
+            name_id: 30001
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'Operation mode. 0: prepare single payload deploy (overwriting previous requests), but do not execute it. 1: execute payload deploy immediately (rejecting further deploy commands during execution, but allowing abort). 2: add payload deploy to existing deployment list.'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Desired approach vector in degrees compass heading (0..360). A negative value indicates the system can define the approach vector at will."}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Desired ground speed at release time. This can be overriden by the airframe in case it needs to meet minimum airspeed. A negative value indicates the system can define the ground speed at will."}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Minimum altitude clearance to the release position in meters. A negative value indicates the system can define the clearance at will."}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Latitude unscaled for MISSION_ITEM or in 1e7 degrees for MISSION_ITEM_INT"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Longitude unscaled for MISSION_ITEM or in 1e7 degrees for MISSION_ITEM_INT"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Altitude, in meters AMSL"}
+          - info: "Control the payload deployment."
+            name: MAV_CMD_PAYLOAD_CONTROL_DEPLOY
+            name_id: 30002
+            params:
+              - {name:  param_1 ,type: f32, unit: ~, info: "'Operation mode. 0: Abort deployment, continue normal mission. 1: switch to payload deploment mode. 100: delete first payload deployment request. 101: delete all payload deployment requests.'"}
+              - {name:  param_2 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_3 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_4 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_5 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_6 ,type: f32, unit: ~, info: "Reserved"}
+              - {name:  param_7 ,type: f32, unit: ~, info: "Reserved"}

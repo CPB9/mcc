@@ -1,0 +1,13 @@
+function(add_kmlxsd_test name)
+    add_libkml_test(${name} kmlxsd)
+endfunction()
+
+add_kmlxsd_test(xsd_complex_type_test)
+add_kmlxsd_test(xsd_element_test)
+add_kmlxsd_test(xsd_file_test)
+add_kmlxsd_test(xsd_handler_test)
+add_kmlxsd_test(xsd_primitive_type_test)
+add_kmlxsd_test(xsd_schema_test)
+add_kmlxsd_test(xsd_simple_type_test)
+add_kmlxsd_test(xsd_util_test)
+add_kmlxsd_test(xst_parser_test)

@@ -1,0 +1,49 @@
+{
+  "devices": [
+    {
+      "firmware": "model",
+      "info": "mcc.model1",
+      "kind": "plane",
+      "name": "mcc.model1",
+      "protocols": {
+        "Internal": 1
+      }
+    },
+    {
+      "firmware": "model",
+      "info": "mcc.model2",
+      "kind": "plane",
+      "name": "mcc.model2",
+      "protocols": {
+        "Internal": 2
+      }
+    },
+    {
+      "firmware": "model",
+      "info": "mcc.model3",
+      "kind": "plane",
+      "name": "mcc.model3",
+      "protocols": {
+        "Internal": 3
+      }
+    },
+    {
+      "firmware": "model",
+      "info": "mcc.model4",
+      "kind": "plane",
+      "name": "mcc.model4",
+      "protocols": {
+        "Internal": 4
+      }
+    },
+    {
+      "firmware": "model",
+      "info": "mcc.mavlink1",
+      "kind": "copter",
+      "name": "mcc.mavlink1",
+      "protocols": {
+        "Mavlink": 1
+      }
+    }
+  ]
+}

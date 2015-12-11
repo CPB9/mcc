@@ -1,0 +1,192 @@
+firmwares:
+  - name: model
+    info: model
+    traits:
+      - name: Tm
+        info: Телеметрия
+        kind: interface
+        commands:
+          - info: 'Читать однократно'
+            name: readOnce
+            name_id: 1
+            params:
+              - {name: trait,       type: string,   unit: ~,    info: 'Имя интерфейса'            }
+              - {name: firstId,     type: u16,      unit: ~,    info: 'Первый параметр' }
+              - {name: count,       type: u16,      unit: ~,    info: 'Количество параметров' }
+          - info: 'Читать однократно'
+            name: startReading
+            name_id: 2
+            params:
+              - {name: trait,       type: string,   unit: ~,    info: 'Имя интерфейса'            }
+              - {name: firstId,     type: u16,      unit: ~,    info: 'Первый параметр' }
+              - {name: count,       type: u16,      unit: ~,    info: 'Количество параметров' }
+          - info: 'Читать однократно'
+            name: stopReading
+            name_id: 3
+            params:
+              - {name: trait,       type: string,   unit: ~,    info: 'Имя интерфейса'            }
+              - {name: firstId,     type: u16,      unit: ~,    info: 'Первый параметр' }
+              - {name: count,       type: u16,      unit: ~,    info: 'Количество параметров' }
+      - name: Device
+        info: Устройство
+        kind: interface
+        fields:
+          - {name: batteryLevel,  type: u8,  unit: 'процент',   info: 'Уровень заряда батареи'               }
+          - {name: signalLevel,   type: u8,  unit: 'процент',   info: 'Уровень радио-сигнала'                }
+          - {name: crc,           type: u16, unit: ~,           info: 'Crc дерева конфигурации'              }
+          - {name: kind,          type: u8,  unit: ~,           info: 'Вид аппарата'                         }
+      - name: Navigation
+        info: 'Текущее состояние полёта'
+        kind: interface
+        traits:
+          - name: Mode
+            info: 'Режимы'
+            kind: struct
+            fields:
+              - {name: activeMode, type: u8, info: 'Текущий режим' }
+          - name: Motion
+            info: 'Характеристики движения'
+            kind: struct
+            fields:
+              - {name: latitude,  type: f32, unit: 'градус',   info: 'Широта'                               }
+              - {name: longitude, type: f32, unit: 'градус',   info: 'Долгота'                              }
+              - {name: altitude,  type: f32, unit: 'м',        info: 'Высота'                               }
+              - {name: accuracy,  type: f32, unit: 'м',        info: 'Точность определения положения'       }
+              - {name: speed,     type: f32, unit: 'м/с',      info: 'Скорость'                             }
+              - {name: pitch,     type: f32, unit: 'градус',   info: 'Тангаж'                               }
+              - {name: heading,   type: f32, unit: 'градус',   info: 'Рыскание'                             }
+              - {name: roll,      type: f32, unit: 'градус',   info: 'Крен'                                 }
+              - {name: throttle,  type: u8,  unit: 'процент',  info: 'Газ'                                  }
+          - name: DogPoint
+            info: 'Поводковая точка'
+            kind: struct
+            fields:
+              - {name: latitude,  type: f32, unit: 'градус',   info: 'Широта'                               }
+              - {name: longitude, type: f32, unit: 'градус',   info: 'Долгота'                              }
+              - {name: altitude,  type: f32, unit: 'м',        info: 'Высота'                               }
+          - name: Routes
+            info: 'Маршруты'
+            kind: interface
+            fields:
+              - {name: count,       type: u16,      unit: ~,        info: 'Количество маршрутов'                }
+              - {name: activeRoute, type: u16,      unit: ~,        info: 'Имя активного маршрута'              }
+              - {name: nextPoint,   type: u16,      unit: ~,        info: 'Следующая точка активного маршрута'  }
+            commands:
+              - info: 'Создать маршрут'
+                name: createRoute
+                name_id: 1
+                params:
+                  - {name: name,           type: u16, unit: ~,              info: 'Имя маршрута'            }
+              - info: 'Удалить маршрут'
+                name: deleteRoute
+                name_id: 2
+                params:
+                  - {name: name,           type: u16, unit: ~,              info: 'Имя маршрута'            }
+              - info: 'Задать активный маршрут'
+                name: setAcitiveRoute
+                name_id: 3
+                params:
+                  - {name: name,           type: u16, unit: ~,              info: 'Имя маршрута'            }
+                  - {name: point,          type: u16, unit: ~,              info: 'Активная точка маршрута' }
+              - info: 'Задать активную точку активного маршрута'
+                name: setActivePoint
+                name_id: 4
+                params:
+                  - {name: index,          type: u16, unit: ~,              info: 'Индекс точки, начиная с нуля'}
+              - info: 'Начать редактирование маршрута'
+                name: beginRoute
+                name_id: 5
+                params:
+                  - {name: name,           type: u16, unit: ~,              info: 'Имя маршрута'            }
+              - info: 'Очистить маршрут'
+                name: clearRoute
+                name_id: 6
+                params:
+                  - {name: name,           type: u16, unit: ~,              info: 'Имя маршрута'            }
+              - info: 'Добавить точку маршрута'
+                name: addRoutePoint
+                name_id: 7
+                params:
+                  - {name: name,      type: u16, unit: ~,          info: 'Имя маршрута'                         }
+                  - {name: latitude,  type: f32, unit: 'градус',   info: 'Широта'                               }
+                  - {name: longitude, type: f32, unit: 'градус',   info: 'Долгота'                              }
+                  - {name: altitude,  type: f32, unit: 'м',        info: 'Высота'                               }
+                  - {name: speed,     type: f32, unit: 'м/с',      info: 'Скорость'                             }
+                  - {name: flags,     type: u32, unit: '~',        info: 'Флаги'                                }
+              - info: 'Закончить редактирование маршрута'
+                name: endRoute
+                name_id: 8
+                params:
+                  - {name: name,            type: u16, unit: ~,              info: 'Имя маршрута'               }
+                  - {name: waypointsCount,  type: u8,  unit: ~,              info: 'Количество путевых точек'   }
+                  - {name: isRing,          type: u8,  unit: 'нет(0)/да(1)', info: 'Кольцевой маршрут'          }
+            traits:
+              - name: Route
+                info: 'Маршрут '
+                kind: array
+                size: 10
+                fields:
+                  - {name: name,            type: u16,      unit: ~,                             info: 'Имя маршрута'                            }
+                  - {name: kind,            type: u16,      unit: 'автоматический(0)/ручной(1)', info: 'Вид маршрута'                            }
+                  - {name: isRing,          type: u8,       unit: 'нет(0)/да(1)',                info: 'Круговой ли маршрут'                     }
+                  - {name: isReadOnly,      type: u8,       unit: 'нет(0)/да(1)',                info: 'Можно ли изменять маршрут'               }
+                  - {name: crc16,           type: u16,      unit: ~,                             info: 'Crc активного маршрута'                  }
+                  - {name: pointsCount,     type: u16,      unit: ~,                             info: 'Количество точек маршрута'               }
+                  - {name: pointsMaxCount,  type: u16,      unit: ~,                             info: 'Максимальное количество точек маршрута'  }
+                  - {name: info,            type: string,   unit: ~,                             info: 'Описание маршрута'                       }
+                traits:
+                  - name: 'Point'
+                    info: 'Точка маршрута '
+                    kind: array
+                    size: 50
+                    fields:
+                      - {name: latitude,  type: f32, unit: 'градус',   info: 'Широта'                               }
+                      - {name: longitude, type: f32, unit: 'градус',   info: 'Долгота'                              }
+                      - {name: altitude,  type: f32, unit: 'м',        info: 'Высота'                               }
+                      - {name: speed,     type: f32, unit: 'м/с',      info: 'Скорость'                             }
+                      - {name: flags,     type: u32, unit: '~',        info: 'Флаги'                                }
+        commands:
+          - info: 'Включить'
+            name: start
+            name_id: 1
+            params: ~
+          - info: 'Включить двигатель'
+            name: startEngine
+            name_id: 2
+            params: ~
+          - info: 'Взлететь'
+            name: takeOff
+            name_id: 3
+            params: ~
+          - info: 'Перейти в режим ручного полета'
+            name: guidedFlying
+            name_id: 4
+            params: ~
+          - info: 'Лететь по маршруту'
+            name: flyRoute
+            name_id: 5
+            params: ~
+          - info: 'Ждать'
+            name: wait
+            name_id: 6
+            params: ~
+          - info: 'Возвратиться'
+            name: return
+            name_id: 7
+            params: ~
+          - info: 'Приземлиться'
+            name: land
+            name_id: 8
+            params: ~
+          - info: 'Выключить двигатель'
+            name: stopEngine
+            name_id: 9
+            params: ~
+          - info: 'Выключить'
+            name: stop
+            name_id: 10
+            params: ~
+          - info: 'Отменить посадку'
+            name: cancelLanding
+            name_id: 11
+            params: ~

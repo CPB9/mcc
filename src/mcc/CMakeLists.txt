@@ -1,0 +1,11 @@
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+add_subdirectory(core)
+add_subdirectory(ui)
+add_subdirectory(misc)
+add_subdirectory(messages)
+add_subdirectory(encoder)
+add_subdirectory(modeling)
+add_subdirectory(target)
+#add_subdirectory(s57)

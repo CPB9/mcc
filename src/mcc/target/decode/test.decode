@@ -1,0 +1,49 @@
+namespace test
+
+alias f32 float:32
+alias u8 uint:8
+
+type f32_arr [f32, 4]
+type u8_dyn_arr [u8, 3..8]
+
+type u8_enum enum u8 (zero = 0, one = 1, ten = 10)
+
+type sub_struct struct(
+    u8 first,
+    u8_enum second,
+    f32_arr arr
+)
+
+type struct_test struct(
+    u8 u8,
+    f32 f32,
+    u8_dyn_arr dyn_arr,
+    f32_arr arr,
+    int:64 int_64,
+    [sub_struct, 2..3] sub_structs
+)
+
+component SubComp
+{
+    struct(
+        u8 a,
+        uint:16 b,
+        [sub_struct, 2] sub_structs
+    )
+}
+
+component TestComp : SubComp
+{
+    struct_test
+
+    command cmdZero:0()
+    command cmdOne:1(u8 arg0, f32_arr arg1, u8_dyn_arr arg2, struct_test arg3)
+
+    message msgZero:0 status *.*
+    message msgOne:1 event (
+        u8,
+        sub_structs[1].arr[0],
+        SubComp.a,
+        SubComp.sub_structs[0].arr[1]
+    )
+}

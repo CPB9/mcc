@@ -1,0 +1,166 @@
+package mcc.protobuf;
+import "Protocol.proto";
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "edu.phystech.acsl.geotarget.protobuf";
+option java_outer_classname = "DeviceProto";
+
+message DeviceActivate_Request
+{
+    required string device      = 1;
+    required bool   isActive    = 2;
+};
+
+message DeviceActivate_Response
+{
+    required string device      = 1;
+    required bool   isActive    = 2;
+    optional string error       = 3;  
+};
+
+message DeviceConnect_Request
+{
+    required string device      = 1;
+    required string channel     = 2;
+};
+
+message DeviceConnect_Response
+{
+    required string device      = 1;
+    required string channel     = 2;
+    optional string error       = 3;  
+};
+
+message DeviceDisconnect_Request
+{
+    required string device      = 1;
+    required string channel     = 2;
+};
+
+message DeviceDisconnect_Response
+{
+    required string device      = 1;
+    required string channel     = 2;
+    optional string error       = 3;  
+};
+
+message DeviceRegister_Request
+{
+    required string channel     = 1;
+    required string protocol    = 2;
+};
+
+message DeviceRegister_Response
+{
+    required string channel     = 1;
+    required string protocol    = 2;
+    optional string device      = 3;
+    optional string error       = 4;
+};
+
+message DeviceUnRegister_Request
+{
+    required string device = 1;
+};
+
+
+message DeviceUnRegister_Response
+{
+    required string device = 1;
+    optional string error  = 2;
+};
+
+message DeviceList_Request
+{
+};
+
+message DeviceList_Response
+{
+    repeated string devices = 1;
+};
+
+message Device_Registered
+{
+    required string device = 1;
+};
+
+message Device_UnRegistered
+{
+    required string device = 1;
+};
+
+message DeviceDescription_Request
+{
+    required string device = 1;
+}
+
+message DeviceDescription_Response
+{
+    required uint32 device_id       = 1;
+    required string device_name     = 2;
+    required string device_info     = 3;
+    required string device_kind     = 4;
+
+    required uint32 firmware_id     = 5;
+    required string firmware_name   = 6;
+    required string firmware_info   = 7;
+}
+
+message DeviceFileLoad_Request
+{
+    required string device    = 1;
+    required string file_path = 2;
+    required bool   isUp      = 3;
+};
+
+message DeviceFileLoadCancel_Request
+{
+    required string device    = 1;
+    required string file_path = 2;
+    optional string reason    = 3;
+}
+
+message DeviceFileLoad_Response
+{
+    required string device      = 1;
+    required string file_path   = 2;
+    optional string error       = 3;
+};
+
+message DeviceState_Response
+{
+    message Stats
+    {
+        required uint32 sentPackets        = 1;
+        required uint32 sentBytesField     = 2;
+        required string sent               = 3;
+        required uint32 recvdPackets       = 4;
+        required uint32 recvdBytesField    = 5;
+        required string recvd              = 6;
+        required uint32 recvdBadPackets    = 7;
+        required uint32 recvdBadBytesField = 8;
+        required string recvdBad           = 9;
+    };
+
+    message File
+    {
+        required string file_path = 1;
+        required uint32 fileSize  = 2;
+        required uint32 loaded    = 3;
+        required bool   isUp      = 4;
+    };
+
+    message Device
+    {
+        required bool   isActive    = 1;
+        required bool   isRegistered= 2;
+        optional uint32 regState    = 3 [default = 100];
+        required string device      = 4;
+        required Stats  stats       = 5;
+        required uint32 cmdsInQueue = 6;
+        required uint32 cmdsProcessed= 7;
+        repeated File   files       = 8;
+    }
+
+    repeated Device devices = 1;
+}

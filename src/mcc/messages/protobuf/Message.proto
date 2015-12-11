@@ -1,0 +1,115 @@
+import "Handshake.proto";
+import "Tm.proto";
+import "Cmd.proto";
+import "Device.proto";
+import "Firmware.proto";
+import "Channel.proto";
+import "System.proto";
+import "Protocol.proto";
+import "IfDev.proto";
+
+
+package mcc.protobuf;
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "edu.phystech.acsl.geotarget.protobuf";
+option java_outer_classname = "MessageProto";
+
+message Error
+{
+    required uint32 messageId   = 1;
+    required string description = 2;
+};
+
+message MessageBody
+{
+    oneof body
+    {
+        Error                           _error                        = 1;
+        SystemState                     _SystemState                  = 2;
+        SystemState_Request             _SystemState_Request          = 3;
+        SystemComponentState            _SystemComponentState         = 4;
+        SystemComponentState_Request    _SystemComponentState_Request = 5;
+        Handshake_Request               _Handshake_Request            = 6;
+        Handshake_Response              _Handshake_Response           = 7;
+
+        Cmd                     _Cmd                    = 20;
+        CmdCancel               _CmdCancel              = 21;
+        CmdState                _CmdState               = 22;
+        CmdSubscribe_Request    _CmdSubscribe_Request   = 25;
+        CmdSubscribe_Response   _CmdSubscribe_Response  = 26;
+        CmdUnSubscribe_Request  _CmdUnSubscribe_Request = 27;
+        CmdUnSubscribe_Response _CmdUnSubscribe_Response= 28;
+
+        ChannelCreate_Request           _ChannelCreate_Request          = 40;
+        ChannelCreate_Response          _ChannelCreate_Response         = 41;
+        ChannelRemove_Request           _ChannelRemove_Request          = 42;
+        ChannelRemove_Response          _ChannelRemove_Response         = 43;
+        ChannelOpen_Request             _ChannelOpen_Request            = 44;
+        ChannelOpen_Response            _ChannelOpen_Response           = 45;
+        ChannelClose_Request            _ChannelClose_Request           = 46;
+        ChannelClose_Response           _ChannelClose_Response          = 47;
+        ChannelState_Response           _ChannelState_Response          = 48;
+
+        DeviceConnect_Request           _DeviceConnect_Request      = 50;
+        DeviceConnect_Response          _DeviceConnect_Response     = 51;
+        DeviceDisconnect_Request        _DeviceDisconnect_Request   = 52;
+        DeviceDisconnect_Response       _DeviceDisconnect_Response  = 53;
+        DeviceRegister_Request          _DeviceRegister_Request     = 54;
+        DeviceRegister_Response         _DeviceRegister_Response    = 55;
+        Device_Registered               _Device_Registered          = 56;
+        DeviceUnRegister_Request        _DeviceUnRegister_Request   = 57;
+        DeviceUnRegister_Response       _DeviceUnRegister_Response  = 58;
+        Device_UnRegistered             _Device_UnRegistered        = 59;
+        DeviceList_Request              _DeviceList_Request         = 60;
+        DeviceList_Response             _DeviceList_Response        = 61;
+        DeviceDescription_Request       _DeviceDescription_Request      = 62;
+        DeviceDescription_Response      _DeviceDescription_Response     = 63;
+        DeviceActivate_Request          _DeviceActivate_Request         = 64;
+        DeviceActivate_Response         _DeviceActivate_Response        = 65;
+        DeviceState_Response            _DeviceState_Response           = 66;
+
+        TmParamList                     _TmParamList                    = 71;
+        TmParamSubscribe_Request        _TmParamSubscribe_Request       = 74;
+        TmParamSubscribe_Response       _TmParamSubscribe_Response      = 75;
+        TmParamUnSubscribe_Request      _TmParamUnSubscribe_Request     = 76;
+        TmParamUnSubscribe_Response     _TmParamUnSubscribe_Response    = 77;
+
+        ProtocolList_Request                _ProtocolList_Request               = 81;
+        ProtocolList_Response               _ProtocolList_Response              = 82;
+        ProtocolDescription_Request         _ProtocolDescription_Request        = 83;
+        ProtocolDescription_Response        _ProtocolDescription_Response       = 84;
+        ProtocolForDevice_Request           _ProtocolForDevice_Request          = 85;
+        ProtocolForDevice_Response          _ProtocolForDevice_Response         = 86;
+        ProtocolForDeviceRegister_Request   _ProtocolForDeviceRegister_Request  = 87;
+        ProtocolForDeviceRegister_Response  _ProtocolForDeviceRegister_Response = 88;
+
+        FirmwareDescription_Request     _FirmwareDescription_Request    = 90;
+        FirmwareDescription_Response    _FirmwareDescription_Response   = 91;
+        FirmwareList_Request            _FirmwareList_Request           = 92;
+        FirmwareList_Response           _FirmwareList_Response          = 93;
+
+        NamespaceFull_Request  _NamespaceFull_Request = 100;
+        NamespaceFull_Response _NamespaceFull_Response = 101;
+        
+        DeviceFileLoad_Request        _DeviceFileLoad_Request       = 110;
+        DeviceFileLoadCancel_Request  _DeviceFileLoadCancel_Request = 111;
+        DeviceFileLoad_Response       _DeviceFileLoad_Response      = 112;
+    }
+};
+
+message MessageHeader
+{
+    required uint32      id         = 1;
+    required string      time       = 2;
+    required string      sender     = 3;
+    required string      receiver   = 4;
+    required uint32      body       = 5;
+    optional uint32      requestId  = 6;
+};
+
+message Message
+{
+    required MessageHeader header  = 1;
+    required MessageBody   body    = 2;
+}

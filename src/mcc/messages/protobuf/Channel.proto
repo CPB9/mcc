@@ -1,0 +1,75 @@
+package mcc.protobuf;
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "edu.phystech.acsl.geotarget.protobuf";
+option java_outer_classname = "ChannelProto";
+
+message ChannelCreate_Request
+{
+    required string  address    = 1;
+};
+
+message ChannelCreate_Response
+{
+    required string  address    = 1;
+    optional string  error      = 2;
+};
+
+message ChannelRemove_Request
+{
+    required string  address    = 1;
+};
+
+message ChannelRemove_Response
+{
+    required string  address    = 1;
+    optional string  error      = 2;
+};
+
+message ChannelOpen_Request
+{
+    required string  address    = 1;
+};
+
+message ChannelOpen_Response
+{
+    required string  address    = 1;
+    optional string  error      = 2;
+};
+
+message ChannelClose_Request
+{
+    required string  address    = 1;
+};
+
+message ChannelClose_Response
+{
+    required string  address    = 1;
+    optional string  error      = 2;
+};
+
+message ChannelState_Response
+{
+    message Stats
+    {
+        required uint32 sentPackets        = 1;
+        required uint32 sentBytesField     = 2;
+        required string sent               = 3;
+        required uint32 recvdPackets       = 4;
+        required uint32 recvdBytesField    = 5;
+        required string recvd              = 6;
+        required uint32 recvdBadPackets    = 7;
+        required uint32 recvdBadBytesField = 8;
+        required string recvdBad           = 9;
+    };
+    
+    message Channel
+    {
+        required bool   isConnected = 1;
+        required string address     = 2;
+        repeated string devices     = 3;
+        required Stats  stats       = 4;
+    }
+
+    repeated Channel channels = 1;
+};

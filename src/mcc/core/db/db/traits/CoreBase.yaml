@@ -1,0 +1,13 @@
+traits:
+  - { name: 'u8',     kind: unsigned, bit_size: 8,    base: ~,    info: 'u8'      }
+  - { name: 'u16',    kind: unsigned, bit_size: 16,   base: ~,    info: 'u16'     }
+  - { name: 'u32',    kind: unsigned, bit_size: 32,   base: ~,    info: 'u32'     }
+  - { name: 'i8',     kind: signed,   bit_size: 8,    base: ~,    info: 'i8'      }
+  - { name: 'i16',    kind: signed,   bit_size: 16,   base: ~,    info: 'i16'     }
+  - { name: 'i32',    kind: signed,   bit_size: 32,   base: ~,    info: 'i32'     }
+  - { name: 'f32',    kind: float,    bit_size: 32,   base: ~,    info: 'f32'     }
+  - { name: 'f64',    kind: float,    bit_size: 64,   base: ~,    info: 'f64'     }
+  - { name: 'u32[]',  kind: array,    bit_size: ~,    base: u32,  info: 'u32[]'   }
+  - { name: 'string', kind: array,    bit_size: ~,    base: u8,   info: 'string'  }
+  - { name: 'char32', kind: unsigned, bit_size: 32,   base: u32,  info: 'char32'  }
+

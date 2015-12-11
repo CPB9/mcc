@@ -1,0 +1,50 @@
+package mcc.protobuf;
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "edu.phystech.acsl.geotarget.protobuf";
+option java_outer_classname = "CmdProto";
+
+message Cmd
+{
+    required uint32 collationId = 1;
+    required string device      = 2;
+    required string trait       = 3;
+    required string command     = 4;
+    repeated string params      = 5;
+};
+
+message CmdCancel
+{
+    required uint32 collationId = 1;
+    optional string device      = 2;
+    optional string trait       = 3;
+};
+
+message CmdState
+{
+    required uint32 collationId  = 1;
+    required string device       = 2;
+    required uint32 state        = 3;
+    optional string reason       = 4;
+    optional string response     = 5;
+};
+
+message CmdSubscribe_Request
+{
+    required string device      = 1;
+};
+
+message CmdSubscribe_Response
+{
+    required string device      = 1;
+    optional string error       = 2;
+};
+
+message CmdUnSubscribe_Request
+{
+    required string device      = 1;
+};
+
+message CmdUnSubscribe_Response
+{
+};

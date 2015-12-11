@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/devicestate/features_icon_attractive.png</file>
+        <file>resources/devicestate/airplane_landing.png</file>
+        <file>resources/devicestate/airplane_takeoff.png</file>
+        <file>resources/devicestate/media_playback_start.png</file>
+        <file>resources/devicestate/media_playback_stop.png</file>
+        <file>resources/devicestate/wifi.png</file>
+        <file>resources/pfd/pfd_adi_back.svg</file>
+        <file>resources/pfd/pfd_adi_ladd.svg</file>
+        <file>resources/pfd/pfd_roll_arrow.svg</file>
+        <file>resources/pfd/pfd_roll_back.svg</file>
+        <file>resources/pfd/pfd_hsi_back.svg</file>
+        <file>resources/pfd/pfd_hsi_face.svg</file>
+        <file>resources/pfd/pfd_hsi_marks.svg</file>
+        <file>resources/pfd/pfd_hsi_target.svg</file>
+        <file>resources/devicestate/critical.png</file>
+        <file>resources/devicestate/warning.png</file>
+    </qresource>
+</RCC>

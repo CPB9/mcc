@@ -1,0 +1,19 @@
+protocols:
+  - name: 'Internal'
+    service: 'mcc.encoder.internal'
+    trait: 'Internal'
+    info: 'Протокол внутреннего обмена сообщениями(protobuf)'
+    param_info: 'Идентификатор модели'
+  - name: 'Mavlink'
+    service: 'mcc.encoder.mavlink'
+    trait: 'Mavlink'
+    info: 'Протокол Mavlink'
+    param_info: 'Идентификатор протокола Mavlink'
+  - name: 'Photon'
+    service: 'mcc.encoder.photon'
+    trait: 'Photon'
+    info: 'Протокол Photon'
+    param_info: 'Идентификатор протокола Photon'
+traits:
+  - {name: Internal, info: 'Описание интерфейса', kind: interface}
+  - {name: Photon,   info: 'Описание интерфейса', kind: interface}

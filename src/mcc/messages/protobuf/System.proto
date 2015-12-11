@@ -1,0 +1,27 @@
+package mcc.protobuf;
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "edu.phystech.acsl.geotarget.protobuf";
+option java_outer_classname = "SystemProto";
+
+message SystemState_Request
+{
+}
+
+message SystemState
+{
+    required bool isStarted= 1;
+    optional string reason = 2;
+}
+
+message SystemComponentState_Request
+{
+}
+
+message SystemComponentState
+{
+    required bool isStarted= 1;
+    optional string reason = 2;
+}
+
+

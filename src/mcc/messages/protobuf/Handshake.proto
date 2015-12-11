@@ -1,0 +1,17 @@
+package mcc.protobuf;
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "edu.phystech.acsl.geotarget.protobuf";
+option java_outer_classname = "HandshakeProto";
+
+message Handshake_Request
+{
+    required string address  = 1;
+    optional bool   isInproc = 2 [default = false];
+    optional bool   cleanSettings = 3 [default = true];
+}
+
+message Handshake_Response
+{
+    required string address = 1;
+}

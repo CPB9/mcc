@@ -1,0 +1,40 @@
+{
+  "services": [
+    {
+      "info": "mcc.core.db",
+      "name": "mcc.core.db"
+    },
+    {
+      "info": "mcc.core.cmd",
+      "name": "mcc.core.cmd"
+    },
+    {
+      "info": "mcc.core.tm",
+      "name": "mcc.core.tm"
+    },
+    {
+      "info": "mcc.core.router",
+      "name": "mcc.core.router"
+    },
+    {
+      "info": "mcc.core.manager",
+      "name": "mcc.core.manager"
+    },
+    {
+      "info": "mcc.ui.sexchange",
+      "name": "mcc.ui.sexchange"
+    },
+    {
+      "info": "mcc.encoder.internal",
+      "name": "mcc.encoder.internal"
+    },
+    {
+      "info": "mcc.encoder.mavlink",
+      "name": "mcc.encoder.mavlink"
+    },
+    {
+      "info": "mcc.encoder.photon",
+      "name": "mcc.encoder.photon"
+    }
+  ]
+}

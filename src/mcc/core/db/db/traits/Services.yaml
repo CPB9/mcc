@@ -1,0 +1,10 @@
+services:
+  - {name: 'mcc.core.db',           info: 'mcc.core.db'         }
+  - {name: 'mcc.core.cmd',          info: 'mcc.core.cmd'        }
+  - {name: 'mcc.core.tm',           info: 'mcc.core.tm'         }
+  - {name: 'mcc.core.router',       info: 'mcc.core.router'     }
+  - {name: 'mcc.core.manager',      info: 'mcc.core.manager'    }
+  - {name: 'mcc.ui.sexchange',      info: 'mcc.ui.sexchange'    }
+  - {name: 'mcc.encoder.internal',  info: 'mcc.encoder.internal'}
+  - {name: 'mcc.encoder.mavlink',   info: 'mcc.encoder.mavlink' }
+  - {name: 'mcc.encoder.photon',    info: 'mcc.encoder.photon' }

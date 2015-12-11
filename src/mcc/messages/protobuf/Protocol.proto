@@ -1,0 +1,64 @@
+package mcc.protobuf;
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "edu.phystech.acsl.geotarget.protobuf";
+option java_outer_classname = "ProtocolProto";
+
+message ProtocolList_Request
+{
+}
+
+message ProtocolList_Response
+{
+    repeated string protocols = 1;
+}
+
+message ProtocolDescription_Request
+{
+    required string protocol = 1;
+}
+
+message ProtocolDescription_Response
+{
+    message Param
+    {
+        required uint32 id   = 1;
+        required string name = 2;
+        required string type = 3;
+        required string info = 4;
+    };
+
+    required string name    = 1;
+    optional uint32 id      = 2;
+    optional string info    = 3;
+    optional string service = 4;
+    optional string trait   = 5;
+    repeated Param  params  = 6;
+    optional string error   = 7;
+}
+
+message ProtocolForDevice_Request
+{
+    required string device = 1;
+}
+
+message ProtocolForDevice_Response
+{
+    required string device   = 1;
+    repeated string protocol = 2;
+}
+
+message ProtocolForDeviceRegister_Request
+{
+    required string device   = 1;
+    required string protocol = 2;
+}
+
+message ProtocolForDeviceRegister_Response
+{
+    required string device   = 1;
+    required string protocol = 2;
+    optional string error    = 3; 
+}
+
+

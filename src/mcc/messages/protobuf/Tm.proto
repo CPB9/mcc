@@ -1,0 +1,48 @@
+package mcc.protobuf;
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "edu.phystech.acsl.geotarget.protobuf";
+option java_outer_classname = "TmParamProto";
+
+message TmParam
+{
+    required string trait       = 3;
+    required string status      = 4;
+    required string value       = 5;
+}
+
+message TmParamList
+{
+    required string  device = 1;
+    repeated TmParam params = 2;
+}
+
+message TmParamSubscribe_Request
+{
+    required string device      = 1;
+    optional string trait       = 2;
+    optional string status      = 3;
+}
+
+message TmParamSubscribe_Response
+{
+    required string device      = 1;
+    optional string trait       = 2;
+    optional string status      = 3;
+    optional string error       = 4;
+}
+
+message TmParamUnSubscribe_Request
+{
+    required string device      = 1;
+    optional string trait       = 2;
+    optional string status      = 3;
+}
+
+message TmParamUnSubscribe_Response
+{
+    required string device      = 1;
+    optional string trait       = 2;
+    optional string status      = 3;
+    optional string error       = 4;
+}

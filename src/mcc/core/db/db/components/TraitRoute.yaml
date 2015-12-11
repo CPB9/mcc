@@ -1,0 +1,96 @@
+types:
+  bool:
+    kind: enum
+    base_type: u8
+    values:
+      False: {value: 0, info: нет}
+      True: {value: 1, info: да}
+  u8: {kind: unsigned, bit_length: 8}
+  u16: {kind: unsigned, bit_length: 16}
+  f32: {kind: float, bit_length: 32}
+  grads: {base_type: f32, unit: градусы}
+  meters: {base_type: f32, unit: м}
+  speed: {base_type: f32, unit: м/с, info: Скорость}
+  extendedRouteKind:
+    kind: enum
+    base_type: u8
+    values:
+      Manual: {value: 0, info: ручной}
+      Buffer: {value: 1, info: буфер}
+      Auto: {value: 2, info: автоматический}
+  routeKind:
+    kind: enum
+    base_type: u8
+    values:
+      Auto: {value: 0, info: автоматический}
+      Manual: {value: 1, info: ручной}
+  pointInfo:
+    kind: struct
+    fields:
+      - {name: latitude, type: grads, info: Широта}
+      - {name: longitude, type: grads, info: Долгота}
+      - {name: altitude, type: meters, info: Высота}
+      - {name: speed, type: speed, info: Скорость}
+  pointsArray:
+    kind: array
+    base_type: pointInfo
+    length_type: u8
+    min_length: 0
+    max_length: 255
+  routeInfo:
+    kind: struct
+    fields:
+      - {name: route, type: pointsArray, info: Точки маршрута}
+      - {name: isRing, type: bool, info: Кольцевой маршрут}
+      - {name: crc16, type: u16}
+  navigationInfo:
+    kind: struct
+    fields:
+      - {name: latitude, type: grads, info: Широта}
+      - {name: longitude, type: grads, info: Долгота}
+      - {name: altitude, type: meters, info: Высота}
+      - {name: speed, type: speed, info: Скорость}
+      - {name: pitch, type: grads, info: Тангаж}
+      - {name: heading, type: grads, info: Рыскание}
+      - {name: roll, type: grads, info: Крен}
+      - {name: routeKind, type: routeKind, info: Вид маршрута}
+      - {name: nextPoint, type: u8, info: Следующая точка маршрута}
+  
+components:
+  - name: Route
+    type: routeInfo
+    info: Управление маршрутом полёта
+    commands:
+      - name: clearRoute
+        info: Очистить маршрут
+        
+      - name: beginRoute
+        info: Начать формирование маршрута
+        arguments:
+          - {name: waypointsCount, type: u8, info: Количество путевых точек}
+          - {name: isRing, type: bool, info: Кольцевой маршрут}
+          
+      - name: setRoutePoint
+        info: Задать путевую точку
+        arguments:
+          - {name: number, type: u8, info: Номер путевой точки (начиная с нуля)}
+          - {name: pointInfo, type: pointInfo}
+          
+      - name: endRoute
+        info: Закончить формирование маршрута
+      
+      - name: changeCurrentRoute
+        info: Изменить маршрут полёта
+        arguments:
+          - {name: kind, type: extendedRouteKind, info: Изменить маршрут полёта}
+    messages:
+      - name: RoutePoints
+
+  - name: Navigation
+    info: Текущее состояние полёта
+    type: navigationInfo
+    messages:
+      - name: Motion
+        parameters: [latitude, longitude, altitude, speed, pitch, heading, roll]
+      - name: Route
+        parameters: [routeKind, nextPoint]

@@ -1,0 +1,37 @@
+{
+  "protocols": [
+    {
+      "info": "Протокол внутреннего обмена сообщениями(protobuf)",
+      "name": "Internal",
+      "param_info": "Идентификатор модели",
+      "service": "mcc.encoder.internal",
+      "trait": "Internal"
+    },
+    {
+      "info": "Протокол Mavlink",
+      "name": "Mavlink",
+      "param_info": "Идентификатор протокола Mavlink",
+      "service": "mcc.encoder.mavlink",
+      "trait": "Mavlink"
+    },
+    {
+      "info": "Протокол Photon",
+      "name": "Photon",
+      "param_info": "Идентификатор протокола Photon",
+      "service": "mcc.encoder.photon",
+      "trait": "Photon"
+    }
+  ],
+  "traits": [
+    {
+      "info": "Описание интерфейса",
+      "kind": "interface",
+      "name": "Internal"
+    },
+    {
+      "info": "Описание интерфейса",
+      "kind": "interface",
+      "name": "Photon"
+    }
+  ]
+}

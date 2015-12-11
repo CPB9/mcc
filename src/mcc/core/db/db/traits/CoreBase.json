@@ -1,0 +1,81 @@
+{
+  "traits": [
+    {
+      "base": null,
+      "bit_size": 8,
+      "info": "u8",
+      "kind": "unsigned",
+      "name": "u8"
+    },
+    {
+      "base": null,
+      "bit_size": 16,
+      "info": "u16",
+      "kind": "unsigned",
+      "name": "u16"
+    },
+    {
+      "base": null,
+      "bit_size": 32,
+      "info": "u32",
+      "kind": "unsigned",
+      "name": "u32"
+    },
+    {
+      "base": null,
+      "bit_size": 8,
+      "info": "i8",
+      "kind": "signed",
+      "name": "i8"
+    },
+    {
+      "base": null,
+      "bit_size": 16,
+      "info": "i16",
+      "kind": "signed",
+      "name": "i16"
+    },
+    {
+      "base": null,
+      "bit_size": 32,
+      "info": "i32",
+      "kind": "signed",
+      "name": "i32"
+    },
+    {
+      "base": null,
+      "bit_size": 32,
+      "info": "f32",
+      "kind": "float",
+      "name": "f32"
+    },
+    {
+      "base": null,
+      "bit_size": 64,
+      "info": "f64",
+      "kind": "float",
+      "name": "f64"
+    },
+    {
+      "base": "u32",
+      "bit_size": null,
+      "info": "u32[]",
+      "kind": "array",
+      "name": "u32[]"
+    },
+    {
+      "base": "u8",
+      "bit_size": null,
+      "info": "string",
+      "kind": "array",
+      "name": "string"
+    },
+    {
+      "base": "u32",
+      "bit_size": 32,
+      "info": "char32",
+      "kind": "unsigned",
+      "name": "char32"
+    }
+  ]
+}

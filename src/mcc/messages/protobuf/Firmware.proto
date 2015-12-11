@@ -1,0 +1,75 @@
+package mcc.protobuf;
+
+option optimize_for = LITE_RUNTIME;
+option java_package = "edu.phystech.acsl.geotarget.protobuf";
+option java_outer_classname = "FirmwareProto";
+
+message FirmwareDescription_Request
+{
+    required string firmware = 1;
+}
+
+message FirmwareDescription_Response
+{
+    message Field
+    {
+        required uint32 id          = 1;
+        required string name        = 2;
+        required uint32 number      = 3;
+        required string trait       = 4;
+        optional string unit        = 5;
+        required string info        = 6;
+        optional string properties  = 7;
+        optional double min         = 8;
+        optional double max         = 9;
+    }
+
+    message MethodArg
+    {
+        required uint32 id          = 1;
+        required string name        = 2;
+        required uint32 number      = 3;
+        required string trait       = 4;
+        optional string unit        = 5;
+        required string info        = 6;
+        optional double min         = 7;
+        optional double max         = 8;
+    }
+
+    message Method
+    {
+        required uint32     id          = 1;
+        required string     name        = 2;
+        required uint32     number      = 3;
+        repeated MethodArg  args        = 4;
+        required string     info        = 5;
+    }
+
+    message Trait
+    {
+        required uint32 id          = 1;
+        required string guid        = 2;
+        required string name        = 3;
+        required uint32 bit_size    = 4;
+        required string kind        = 5;
+        repeated Method methods     = 6;
+        repeated Field  fields      = 7;
+        required string info        = 8;
+        required uint32 parent_id   = 9;
+        required string unique_name = 10;
+    }
+
+    required uint32 firmware_id = 1;
+    required string firmware    = 2;
+    repeated Trait  traits      = 3;
+    optional string error       = 4;
+}
+
+message FirmwareList_Request
+{
+}
+
+message FirmwareList_Response
+{
+    repeated string firmwares = 1;
+}

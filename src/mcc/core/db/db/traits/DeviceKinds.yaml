@@ -1,0 +1,4 @@
+device_kinds:
+  - { name: 'unknown',      info: 'неизвестный' }
+  - { name: 'plane',        info: 'самолёт' }
+  - { name: 'copter',       info: 'коптер' }

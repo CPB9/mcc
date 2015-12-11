@@ -1,0 +1,573 @@
+{
+  "firmwares": [
+    {
+      "info": "model",
+      "name": "model",
+      "traits": [
+        {
+          "commands": [
+            {
+              "info": "Читать однократно",
+              "name": "readOnce",
+              "name_id": 1,
+              "params": [
+                {
+                  "info": "Имя интерфейса",
+                  "name": "trait",
+                  "type": "string",
+                  "unit": null
+                },
+                {
+                  "info": "Первый параметр",
+                  "name": "firstId",
+                  "type": "u16",
+                  "unit": null
+                },
+                {
+                  "info": "Количество параметров",
+                  "name": "count",
+                  "type": "u16",
+                  "unit": null
+                }
+              ]
+            },
+            {
+              "info": "Читать однократно",
+              "name": "startReading",
+              "name_id": 2,
+              "params": [
+                {
+                  "info": "Имя интерфейса",
+                  "name": "trait",
+                  "type": "string",
+                  "unit": null
+                },
+                {
+                  "info": "Первый параметр",
+                  "name": "firstId",
+                  "type": "u16",
+                  "unit": null
+                },
+                {
+                  "info": "Количество параметров",
+                  "name": "count",
+                  "type": "u16",
+                  "unit": null
+                }
+              ]
+            },
+            {
+              "info": "Читать однократно",
+              "name": "stopReading",
+              "name_id": 3,
+              "params": [
+                {
+                  "info": "Имя интерфейса",
+                  "name": "trait",
+                  "type": "string",
+                  "unit": null
+                },
+                {
+                  "info": "Первый параметр",
+                  "name": "firstId",
+                  "type": "u16",
+                  "unit": null
+                },
+                {
+                  "info": "Количество параметров",
+                  "name": "count",
+                  "type": "u16",
+                  "unit": null
+                }
+              ]
+            }
+          ],
+          "info": "Телеметрия",
+          "kind": "interface",
+          "name": "Tm"
+        },
+        {
+          "fields": [
+            {
+              "info": "Уровень заряда батареи",
+              "name": "batteryLevel",
+              "type": "u8",
+              "unit": "процент"
+            },
+            {
+              "info": "Уровень радио-сигнала",
+              "name": "signalLevel",
+              "type": "u8",
+              "unit": "процент"
+            },
+            {
+              "info": "Crc дерева конфигурации",
+              "name": "crc",
+              "type": "u16",
+              "unit": null
+            },
+            {
+              "info": "Вид аппарата",
+              "name": "kind",
+              "type": "u8",
+              "unit": null
+            }
+          ],
+          "info": "Устройство",
+          "kind": "interface",
+          "name": "Device"
+        },
+        {
+          "commands": [
+            {
+              "info": "Включить",
+              "name": "start",
+              "name_id": 1,
+              "params": null
+            },
+            {
+              "info": "Включить двигатель",
+              "name": "startEngine",
+              "name_id": 2,
+              "params": null
+            },
+            {
+              "info": "Взлететь",
+              "name": "takeOff",
+              "name_id": 3,
+              "params": null
+            },
+            {
+              "info": "Перейти в режим ручного полета",
+              "name": "guidedFlying",
+              "name_id": 4,
+              "params": null
+            },
+            {
+              "info": "Лететь по маршруту",
+              "name": "flyRoute",
+              "name_id": 5,
+              "params": null
+            },
+            {
+              "info": "Ждать",
+              "name": "wait",
+              "name_id": 6,
+              "params": null
+            },
+            {
+              "info": "Возвратиться",
+              "name": "return",
+              "name_id": 7,
+              "params": null
+            },
+            {
+              "info": "Приземлиться",
+              "name": "land",
+              "name_id": 8,
+              "params": null
+            },
+            {
+              "info": "Выключить двигатель",
+              "name": "stopEngine",
+              "name_id": 9,
+              "params": null
+            },
+            {
+              "info": "Выключить",
+              "name": "stop",
+              "name_id": 10,
+              "params": null
+            },
+            {
+              "info": "Отменить посадку",
+              "name": "cancelLanding",
+              "name_id": 11,
+              "params": null
+            }
+          ],
+          "info": "Текущее состояние полёта",
+          "kind": "interface",
+          "name": "Navigation",
+          "traits": [
+            {
+              "fields": [
+                {
+                  "info": "Текущий режим",
+                  "name": "activeMode",
+                  "type": "u8"
+                }
+              ],
+              "info": "Режимы",
+              "kind": "struct",
+              "name": "Mode"
+            },
+            {
+              "fields": [
+                {
+                  "info": "Широта",
+                  "name": "latitude",
+                  "type": "f32",
+                  "unit": "градус"
+                },
+                {
+                  "info": "Долгота",
+                  "name": "longitude",
+                  "type": "f32",
+                  "unit": "градус"
+                },
+                {
+                  "info": "Высота",
+                  "name": "altitude",
+                  "type": "f32",
+                  "unit": "м"
+                },
+                {
+                  "info": "Точность определения положения",
+                  "name": "accuracy",
+                  "type": "f32",
+                  "unit": "м"
+                },
+                {
+                  "info": "Скорость",
+                  "name": "speed",
+                  "type": "f32",
+                  "unit": "м/с"
+                },
+                {
+                  "info": "Тангаж",
+                  "name": "pitch",
+                  "type": "f32",
+                  "unit": "градус"
+                },
+                {
+                  "info": "Рыскание",
+                  "name": "heading",
+                  "type": "f32",
+                  "unit": "градус"
+                },
+                {
+                  "info": "Крен",
+                  "name": "roll",
+                  "type": "f32",
+                  "unit": "градус"
+                },
+                {
+                  "info": "Газ",
+                  "name": "throttle",
+                  "type": "u8",
+                  "unit": "процент"
+                }
+              ],
+              "info": "Характеристики движения",
+              "kind": "struct",
+              "name": "Motion"
+            },
+            {
+              "fields": [
+                {
+                  "info": "Широта",
+                  "name": "latitude",
+                  "type": "f32",
+                  "unit": "градус"
+                },
+                {
+                  "info": "Долгота",
+                  "name": "longitude",
+                  "type": "f32",
+                  "unit": "градус"
+                },
+                {
+                  "info": "Высота",
+                  "name": "altitude",
+                  "type": "f32",
+                  "unit": "м"
+                }
+              ],
+              "info": "Поводковая точка",
+              "kind": "struct",
+              "name": "DogPoint"
+            },
+            {
+              "commands": [
+                {
+                  "info": "Создать маршрут",
+                  "name": "createRoute",
+                  "name_id": 1,
+                  "params": [
+                    {
+                      "info": "Имя маршрута",
+                      "name": "name",
+                      "type": "u16",
+                      "unit": null
+                    }
+                  ]
+                },
+                {
+                  "info": "Удалить маршрут",
+                  "name": "deleteRoute",
+                  "name_id": 2,
+                  "params": [
+                    {
+                      "info": "Имя маршрута",
+                      "name": "name",
+                      "type": "u16",
+                      "unit": null
+                    }
+                  ]
+                },
+                {
+                  "info": "Задать активный маршрут",
+                  "name": "setAcitiveRoute",
+                  "name_id": 3,
+                  "params": [
+                    {
+                      "info": "Имя маршрута",
+                      "name": "name",
+                      "type": "u16",
+                      "unit": null
+                    },
+                    {
+                      "info": "Активная точка маршрута",
+                      "name": "point",
+                      "type": "u16",
+                      "unit": null
+                    }
+                  ]
+                },
+                {
+                  "info": "Задать активную точку активного маршрута",
+                  "name": "setActivePoint",
+                  "name_id": 4,
+                  "params": [
+                    {
+                      "info": "Индекс точки, начиная с нуля",
+                      "name": "index",
+                      "type": "u16",
+                      "unit": null
+                    }
+                  ]
+                },
+                {
+                  "info": "Начать редактирование маршрута",
+                  "name": "beginRoute",
+                  "name_id": 5,
+                  "params": [
+                    {
+                      "info": "Имя маршрута",
+                      "name": "name",
+                      "type": "u16",
+                      "unit": null
+                    }
+                  ]
+                },
+                {
+                  "info": "Очистить маршрут",
+                  "name": "clearRoute",
+                  "name_id": 6,
+                  "params": [
+                    {
+                      "info": "Имя маршрута",
+                      "name": "name",
+                      "type": "u16",
+                      "unit": null
+                    }
+                  ]
+                },
+                {
+                  "info": "Добавить точку маршрута",
+                  "name": "addRoutePoint",
+                  "name_id": 7,
+                  "params": [
+                    {
+                      "info": "Имя маршрута",
+                      "name": "name",
+                      "type": "u16",
+                      "unit": null
+                    },
+                    {
+                      "info": "Широта",
+                      "name": "latitude",
+                      "type": "f32",
+                      "unit": "градус"
+                    },
+                    {
+                      "info": "Долгота",
+                      "name": "longitude",
+                      "type": "f32",
+                      "unit": "градус"
+                    },
+                    {
+                      "info": "Высота",
+                      "name": "altitude",
+                      "type": "f32",
+                      "unit": "м"
+                    },
+                    {
+                      "info": "Скорость",
+                      "name": "speed",
+                      "type": "f32",
+                      "unit": "м/с"
+                    },
+                    {
+                      "info": "Флаги",
+                      "name": "flags",
+                      "type": "u32",
+                      "unit": "~"
+                    }
+                  ]
+                },
+                {
+                  "info": "Закончить редактирование маршрута",
+                  "name": "endRoute",
+                  "name_id": 8,
+                  "params": [
+                    {
+                      "info": "Имя маршрута",
+                      "name": "name",
+                      "type": "u16",
+                      "unit": null
+                    },
+                    {
+                      "info": "Количество путевых точек",
+                      "name": "waypointsCount",
+                      "type": "u8",
+                      "unit": null
+                    },
+                    {
+                      "info": "Кольцевой маршрут",
+                      "name": "isRing",
+                      "type": "u8",
+                      "unit": "нет(0)/да(1)"
+                    }
+                  ]
+                }
+              ],
+              "fields": [
+                {
+                  "info": "Количество маршрутов",
+                  "name": "count",
+                  "type": "u16",
+                  "unit": null
+                },
+                {
+                  "info": "Имя активного маршрута",
+                  "name": "activeRoute",
+                  "type": "u16",
+                  "unit": null
+                },
+                {
+                  "info": "Следующая точка активного маршрута",
+                  "name": "nextPoint",
+                  "type": "u16",
+                  "unit": null
+                }
+              ],
+              "info": "Маршруты",
+              "kind": "interface",
+              "name": "Routes",
+              "traits": [
+                {
+                  "fields": [
+                    {
+                      "info": "Имя маршрута",
+                      "name": "name",
+                      "type": "u16",
+                      "unit": null
+                    },
+                    {
+                      "info": "Вид маршрута",
+                      "name": "kind",
+                      "type": "u16",
+                      "unit": "автоматический(0)/ручной(1)"
+                    },
+                    {
+                      "info": "Круговой ли маршрут",
+                      "name": "isRing",
+                      "type": "u8",
+                      "unit": "нет(0)/да(1)"
+                    },
+                    {
+                      "info": "Можно ли изменять маршрут",
+                      "name": "isReadOnly",
+                      "type": "u8",
+                      "unit": "нет(0)/да(1)"
+                    },
+                    {
+                      "info": "Crc активного маршрута",
+                      "name": "crc16",
+                      "type": "u16",
+                      "unit": null
+                    },
+                    {
+                      "info": "Количество точек маршрута",
+                      "name": "pointsCount",
+                      "type": "u16",
+                      "unit": null
+                    },
+                    {
+                      "info": "Максимальное количество точек маршрута",
+                      "name": "pointsMaxCount",
+                      "type": "u16",
+                      "unit": null
+                    },
+                    {
+                      "info": "Описание маршрута",
+                      "name": "info",
+                      "type": "string",
+                      "unit": null
+                    }
+                  ],
+                  "info": "Маршрут ",
+                  "kind": "array",
+                  "name": "Route",
+                  "size": 10,
+                  "traits": [
+                    {
+                      "fields": [
+                        {
+                          "info": "Широта",
+                          "name": "latitude",
+                          "type": "f32",
+                          "unit": "градус"
+                        },
+                        {
+                          "info": "Долгота",
+                          "name": "longitude",
+                          "type": "f32",
+                          "unit": "градус"
+                        },
+                        {
+                          "info": "Высота",
+                          "name": "altitude",
+                          "type": "f32",
+                          "unit": "м"
+                        },
+                        {
+                          "info": "Скорость",
+                          "name": "speed",
+                          "type": "f32",
+                          "unit": "м/с"
+                        },
+                        {
+                          "info": "Флаги",
+                          "name": "flags",
+                          "type": "u32",
+                          "unit": "~"
+                        }
+                      ],
+                      "info": "Точка маршрута ",
+                      "kind": "array",
+                      "name": "Point",
+                      "size": 50
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

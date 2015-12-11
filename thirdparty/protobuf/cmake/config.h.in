@@ -1,0 +1,27 @@
+#ifndef _CONFIG_H_
+#define _CONFIG_H_
+
+#cmakedefine HAVE_HASH_MAP
+#cmakedefine HAVE_HASH_SET
+#define HASH_NAMESPACE ${HASH_NAMESPACE}
+#define HASH_MAP_H <${HASH_MAP_H}>
+#define HASH_SET_H <${HASH_SET_H}>
+#define HASH_MAP_CLASS ${HASH_MAP_CLASS}
+#define HASH_SET_CLASS ${HASH_SET_CLASS}
+
+#cmakedefine HAVE_PTHREAD
+#cmakedefine HAVE_FCNTL_H
+#cmakedefine HAVE_INTTYPES_H
+#cmakedefine HAVE_LIMITS_H
+#cmakedefine HAVE_STDLIB_H
+#cmakedefine HAVE_UNISTD_H
+
+#cmakedefine HAVE_FTRUNCATE
+#cmakedefine HAVE_MEMSET
+#cmakedefine HAVE_MKDIR
+#cmakedefine HAVE_STRCHR
+#cmakedefine HAVE_STRERROR
+#cmakedefine HAVE_STRTOL
+
+#endif
+
